@@ -31,6 +31,7 @@ public class Agenda {
 	//methods
 	public void ajouter(Evenement unEvt) {
 		this.evenements.add(unEvt);
+		unEvt.setAgenda(this);
 	}
 
 	public void supprimer(Evenement unEvt) {
