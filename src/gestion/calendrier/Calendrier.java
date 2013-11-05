@@ -2,6 +2,7 @@
 
 package gestion.calendrier;
 
+import fr.univsavoie.iae.tm.objetsGeometriques.objets.ObjetGeometrique;
 import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
 
@@ -22,8 +23,14 @@ public class Calendrier {
 	}
 
 	//sort and filter methods
-	public void tri(String unAttribut) {
-		//TODO
+	public ArrayList<Evenement> tri(String unAttribut) {
+		List<String> combined = new ArrayList<String>();
+		combined.addAll(firstArrayList);
+		combined.addAll(secondArrayList);
+		combined.addAll(thirdArrayList);
+		for(Agenda a:this.agendas){
+			a.tri(unAttribut);
+		}
 	}
 	public void filtreDate(GregorianCalendar uneDate) {
 		//TODO
