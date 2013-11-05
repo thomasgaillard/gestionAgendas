@@ -41,6 +41,12 @@ public class App {
 		
 		ag1.afficherAgenda();
 		ag2.afficherAgenda();
+		
+		e2.changerAgenda(ag1);
+		
+		ag1.afficherAgenda();
+		ag2.afficherAgenda();
+	
 	}
 
 }
