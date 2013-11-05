@@ -11,6 +11,8 @@ public class Agenda {
 	private ArrayList<Evenement> evenements;
 	
 	//constructor
+	public Agenda(){
+	}
 	public Agenda(String unNom){
 		this.setNom(unNom);
 		this.evenements = new ArrayList<Evenement>();
