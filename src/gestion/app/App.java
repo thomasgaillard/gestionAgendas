@@ -19,5 +19,5 @@ public class App {
 		ag1.ajouter(e1);
 		System.out.println(e1.toString());
 	}
-	
+
 }
