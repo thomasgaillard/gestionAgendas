@@ -12,7 +12,7 @@ public class Evenement {
 	private String lieu;
 	private Agenda agenda;
 
-	//getters
+	//getter
 	public GregorianCalendar getDateHeure() {
 		return this.dateHeure;
 	}
