@@ -25,8 +25,4 @@ public class App {
 		System.out.println(e1.toString());
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 597ad4bfb7b6612cfe390fb0db85033645dbc53a
