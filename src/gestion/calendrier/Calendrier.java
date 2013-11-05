@@ -24,13 +24,11 @@ public class Calendrier {
 
 	//sort and filter methods
 	public ArrayList<Evenement> tri(String unAttribut) {
-		List<String> combined = new ArrayList<String>();
-		combined.addAll(firstArrayList);
-		combined.addAll(secondArrayList);
-		combined.addAll(thirdArrayList);
+		ArrayList<Evenement> merged = new ArrayList<Evenement>();
 		for(Agenda a:this.agendas){
-			a.tri(unAttribut);
+			merged.addAll(a.tri(unAttribut));
 		}
+		return merged;
 	}
 	public void filtreDate(GregorianCalendar uneDate) {
 		//TODO
