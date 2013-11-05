@@ -47,7 +47,7 @@ public class Evenement {
 	}
 	
 	public String toString(){
-		return this.getNom()+" : le "+this.getDateHeure(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeure().MONTH+"/"+this.getDateHeure().YEAR+" "+this.getDateHeure().HOUR_OF_DAY+":"+this.getDateHeure().MINUTE+", ˆ "+this.getLieu();
+		return this.getNom()+" : le "+this.getDateHeure().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeure().get(Calendar.MONTH)+"/"+this.getDateHeure().get(Calendar.YEAR)+" "+this.getDateHeure().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeure().get(Calendar.MINUTE)+", ˆ "+this.getLieu();
 	}
 		
 }
