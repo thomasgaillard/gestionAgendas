@@ -2,6 +2,7 @@
 
 package gestion.agendas;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Evenement {
@@ -41,12 +42,12 @@ public class Evenement {
 	}
 	
 	//methods
-	public void deplacerAgenda(Agenda agenda){
+	public void deplacerAgenda(Agenda agenda) {
 		//TODO
 	}
 	
 	public String toString(){
-		return this.getNom()+" : le "+this.getDateHeure()+", ˆ "+this.getLieu();
+		return this.getNom()+" : le "+this.getDateHeure(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeure().MONTH+"/"+this.getDateHeure().YEAR+" "+this.getDateHeure().HOUR_OF_DAY+":"+this.getDateHeure().MINUTE+", ˆ "+this.getLieu();
 	}
 		
 }
