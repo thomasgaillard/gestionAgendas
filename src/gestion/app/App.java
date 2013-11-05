@@ -15,8 +15,13 @@ public class App {
 		e1.setNom("RDV Coiffeur");
 		e1.setLieu("Annecy");
 		e1.setDateHeure(new GregorianCalendar(2013,11,8,11,30));
+			
 		Agenda ag1 = new Agenda("Perso");
 		ag1.ajouter(e1);
+		Agenda ag2 = new Agenda("Pro");
+		
+		System.out.println(e1.toString());
+		e1.changerAgenda(ag2);
 		System.out.println(e1.toString());
 	}
 
