@@ -10,7 +10,7 @@ import gestion.agendas.Evenement;
 public class App {
 
 	//main method
-	public static void main (String []args){
+	public static void main (String []args) {
 		Evenement e1 = new Evenement();
 		e1.setNom("RDV Coiffeur");
 		e1.setLieu("Annecy");
@@ -19,4 +19,5 @@ public class App {
 		ag1.ajouter(e1);
 		System.out.println(e1.toString());
 	}
+	
 }
