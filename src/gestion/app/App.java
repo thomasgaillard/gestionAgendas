@@ -18,6 +18,5 @@ public class App {
 		Agenda ag1 = new Agenda("Perso");
 		ag1.ajouter(e1);
 		System.out.println(e1.toString());
-
 	}
 }
