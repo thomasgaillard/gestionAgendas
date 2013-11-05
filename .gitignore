@@ -1,0 +1,6 @@
+bin
+.metadata
+*.docx
+*.png
+*.graffle
+*.DS_Store
