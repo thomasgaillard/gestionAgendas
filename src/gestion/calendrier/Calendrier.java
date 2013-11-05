@@ -1,3 +1,5 @@
+// Maxence Mermoz - Thomas Gaillard - M1 MTI
+
 package gestion.calendrier;
 
 import gestion.agendas.Agenda;
@@ -20,7 +22,7 @@ public class Calendrier {
 		this.agendas.remove(unAgenda);
 	}
 	
-	//méthodes de tris et filtrage à compléter
+	//sort and filter methods
 	public void tri(String unAttribut){
 		//TODO
 	}

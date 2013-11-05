@@ -1,3 +1,5 @@
+// Maxence Mermoz - Thomas Gaillard - M1 MTI
+
 package gestion.app;
 
 import java.util.GregorianCalendar;
@@ -7,6 +9,7 @@ import gestion.agendas.Evenement;
 
 public class App {
 	
+	//main method
 	public static void main (String []args){
 		Evenement e1 = new Evenement();
 			e1.setNom("RDV Coiffeur");
