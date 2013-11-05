@@ -20,7 +20,7 @@ public class App {
 		ag1.ajouter(e1);
 		Agenda ag2 = new Agenda("Pro");
 		
-		System.out.println(e1.toString());
+		ag1.afficherAgenda();
 		e1.changerAgenda(ag2);
 		System.out.println(e1.toString());
 	}
