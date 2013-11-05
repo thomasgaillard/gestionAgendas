@@ -10,9 +10,9 @@ public class Evenement {
 	private GregorianCalendar dateHeure;
 	private String nom;
 	private String lieu;
-	private Agenda agenda
-
-	//getter
+	private Agenda agenda;
+	
+	//getters
 	public GregorianCalendar getDateHeure() {
 		return this.dateHeure;
 	}
@@ -42,7 +42,11 @@ public class Evenement {
 	
 	//methods
 	public void deplacerAgenda(Agenda agenda){
-		
+		//TODO
 	}
 	
+	public String toString(){
+		return this.getNom()+" : le "+this.getDateHeure()+", ˆ "+this.getLieu();
+	}
+		
 }
