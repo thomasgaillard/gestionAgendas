@@ -4,7 +4,8 @@ package gestion.agendas;
 
 import java.util.ArrayList;
 
-public class Agenda {
+@SuppressWarnings("rawtypes")
+public class Agenda implements Comparable {
 
 	//attributes
 	private String nom;
@@ -33,16 +34,26 @@ public class Agenda {
 		this.evenements.add(unEvt);
 		unEvt.setAgenda(this);
 	}
-
 	public void supprimer(Evenement unEvt) {
 		this.evenements.remove(unEvt);
 	}
-	
 	public void afficherAgenda(){
 		System.out.println(this.getNom());
 		for(Evenement evt: this.evenements){
 			evt.afficherEvenement();
 		}
+	}
+	public ArrayList<Evenement> tri(String unAttribut) {
+		ArrayList<Evenement> merged = new ArrayList<Evenement>();
+		for(Evenement e:this.evenements){
+			//merged.addAll(e.sort(unAttribut));
+			//tripardate
+		}
+		return merged;
+	}
+	@Override
+	public int compareTo(Object o) {
+		return 0;
 	}
 
 }
