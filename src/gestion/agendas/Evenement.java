@@ -42,8 +42,9 @@ public class Evenement {
 	}
 	
 	//methods
-	public void deplacerAgenda(Agenda agenda) {
-		//TODO
+	public void changerAgenda(Agenda agenda) {
+		this.getAgenda().supprimer(this);
+		agenda.ajouter(this);
 	}
 	
 	public String toString(){
