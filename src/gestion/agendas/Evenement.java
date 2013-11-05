@@ -10,7 +10,7 @@ public class Evenement {
 	private GregorianCalendar dateHeure;
 	private String nom;
 	private String lieu;
-	private Agenda agenda;
+	private Agenda agenda
 
 	//getter
 	public GregorianCalendar getDateHeure() {
