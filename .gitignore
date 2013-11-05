@@ -2,3 +2,6 @@ bin
 .metadata
 *.png
 *.DS_Store
+*.classpath
+*.project
+.settings
