@@ -8,14 +8,21 @@ import java.util.GregorianCalendar;
 public class Evenement {
 
 	//attributes
-	private GregorianCalendar dateHeure;
+	private GregorianCalendar dateHeureDebut;
+	private GregorianCalendar dateHeureFin;
+	
+	
+
 	private String nom;
 	private String lieu;
 	private Agenda agenda;
 	
 	//getters
-	public GregorianCalendar getDateHeure() {
-		return this.dateHeure;
+	public GregorianCalendar getDateHeureDebut() {
+		return this.dateHeureDebut;
+	}
+	public GregorianCalendar getDateHeureFin() {
+		return dateHeureFin;
 	}
 	public String getNom() {
 		return this.nom;
@@ -28,8 +35,12 @@ public class Evenement {
 	}
 	
 	//setters
-	public void setDateHeure(GregorianCalendar dateHeure) {
-		this.dateHeure = dateHeure;
+	public void setDateHeureDebut(GregorianCalendar dateHeure) {
+		this.dateHeureDebut = dateHeure;
+	}
+	public void setDateHeureFin(GregorianCalendar dateHeureFin) {
+		if(this.getDateHeureDebut()!=null && dateHeureFin.after(this.getDateHeureDebut()))
+			this.dateHeureFin = dateHeureFin;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -48,7 +59,7 @@ public class Evenement {
 	}
 	
 	public void afficherEvenement(){
-		System.out.println(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : le "+this.getDateHeure().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeure().get(Calendar.MONTH)+"/"+this.getDateHeure().get(Calendar.YEAR)+" "+this.getDateHeure().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeure().get(Calendar.MINUTE)+", ˆ "+this.getLieu());
+		System.out.println(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : le "+this.getDateHeureDebut().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeureDebut().get(Calendar.MONTH)+"/"+this.getDateHeureDebut().get(Calendar.YEAR)+" "+this.getDateHeureDebut().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeureDebut().get(Calendar.MINUTE)+", ˆ "+this.getLieu());
 	}
 
 }
