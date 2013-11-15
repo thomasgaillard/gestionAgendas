@@ -35,12 +35,12 @@ public class Evenement {
 	}
 	
 	//setters
-	public void setDateHeureDebut(GregorianCalendar dateHeure) {
-		this.dateHeureDebut = dateHeure;
+	public void setDateHeureDebut(GregorianCalendar uneDateHeureDebut) {
+		this.dateHeureDebut = uneDateHeureDebut;
 	}
-	public void setDateHeureFin(GregorianCalendar dateHeureFin) {
-		if(this.getDateHeureDebut()!=null && dateHeureFin.after(this.getDateHeureDebut()))
-			this.dateHeureFin = dateHeureFin;
+	public void setDateHeureFin(GregorianCalendar uneDateHeureFin) {
+		if(this.getDateHeureDebut()!=null && uneDateHeureFin.after(this.getDateHeureDebut()))
+			this.dateHeureFin = uneDateHeureFin;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
