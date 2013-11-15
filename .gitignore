@@ -3,5 +3,4 @@ bin
 *.png
 *.DS_Store
 *.classpath
-*.project
 .settings
