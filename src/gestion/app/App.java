@@ -15,22 +15,22 @@ public class App {
 		Evenement e1 = new Evenement();
 		e1.setNom("RDV Coiffeur");
 		e1.setLieu("Annecy");
-		e1.setDateHeure(new GregorianCalendar(2013,11,8,11,30));
+		e1.setDateHeureDebut(new GregorianCalendar(2013,11,8,11,30));
 		
 		Evenement e2 = new Evenement();
 		e2.setNom("RŽunion avec Jacky");
 		e2.setLieu("Annecy-le-Vieux");
-		e2.setDateHeure(new GregorianCalendar(2013,11,12,18,30));
+		e2.setDateHeureDebut(new GregorianCalendar(2013,11,12,18,30));
 		
 		Evenement e3 = new Evenement();
 		e3.setNom("RŽparation voiture");
 		e3.setLieu("Annecy");
-		e3.setDateHeure(new GregorianCalendar(2013,11,15,14,00));
+		e3.setDateHeureDebut(new GregorianCalendar(2013,11,15,14,00));
 		
 		Evenement e4 = new Evenement();
 		e4.setNom("Courses de noel");
 		e4.setLieu("Annecy");
-		e4.setDateHeure(new GregorianCalendar(2013,11,30,15,00));
+		e4.setDateHeureDebut(new GregorianCalendar(2013,11,30,15,00));
 			
 		Agenda ag1 = new Agenda("Perso");
 		ag1.ajouter(e1);
