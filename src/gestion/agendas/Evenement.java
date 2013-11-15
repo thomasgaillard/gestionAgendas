@@ -2,8 +2,11 @@
 
 package gestion.agendas;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class Evenement {
 
@@ -34,9 +37,11 @@ public class Evenement {
 	//setters
 	public void setDateHeureDebut(GregorianCalendar uneDateHeureDebut) {
 		this.dateHeureDebut = uneDateHeureDebut;
+		if(uneDateHeureDebut.after(this.getDateHeureFin()))
+			this.dateHeureFin = uneDateHeureDebut;
 	}
 	public void setDateHeureFin(GregorianCalendar uneDateHeureFin) {
-		if(this.getDateHeureDebut()!=null && uneDateHeureFin.after(this.getDateHeureDebut()))
+		if(uneDateHeureFin.after(this.getDateHeureDebut()))
 			this.dateHeureFin = uneDateHeureFin;
 		else
 			this.dateHeureFin = this.getDateHeureDebut();
@@ -54,7 +59,7 @@ public class Evenement {
 	//constructors
 	public Evenement(){
 		this.setNom("Mon événement");
-		this.setDateHeureDebut(new GregorianCalendar());
+		this.setDateHeureDebut(new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris")));
 		this.setDateHeureFin(new GregorianCalendar());
 		
 	}
@@ -65,7 +70,12 @@ public class Evenement {
 	}
 	
 	public void afficherEvenement(){
-		System.out.println(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+this.getDateHeureDebut().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeureDebut().get(Calendar.MONTH)+"/"+this.getDateHeureDebut().get(Calendar.YEAR)+" "+this.getDateHeureDebut().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeureDebut().get(Calendar.MINUTE)+" au "+this.getDateHeureFin().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeureFin().get(Calendar.MONTH)+"/"+this.getDateHeureFin().get(Calendar.YEAR)+" "+this.getDateHeureFin().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeureFin().get(Calendar.MINUTE)+"  à "+this.getLieu());
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			
+			java.util.Date dateDebut = this.getDateHeureDebut().getTime(); 		
+			java.util.Date dateFin = this.getDateHeureFin().getTime(); 
+
+		System.out.println(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+dateFormat.format(dateDebut)+" au "+dateFormat.format(dateFin)+"  à "+this.getLieu());
 	}
 
 }

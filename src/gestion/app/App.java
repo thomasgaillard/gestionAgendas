@@ -3,6 +3,9 @@
 
 package gestion.app;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import gestion.agendas.Agenda;
@@ -33,7 +36,9 @@ public class App {
 		Evenement e4 = new Evenement();
 		e4.setNom("Courses de noel");
 		e4.setLieu("Annecy");
-		e4.setDateHeureDebut(new GregorianCalendar(2013,11,30,15,00));
+		e4.setDateHeureFin(new GregorianCalendar(2013,11,14,10,00));
+		
+		Evenement e5 = new Evenement();
 			
 		Agenda ag1 = new Agenda("Perso");
 		ag1.ajouter(e1);
@@ -42,6 +47,7 @@ public class App {
 		
 		Agenda ag2 = new Agenda("Pro");
 		ag2.ajouter(e2);
+		ag2.ajouter(e5);
 		
 		System.out.println("\n----- Jeu de Tests 1 -----");
 		ag1.afficherAgenda();
