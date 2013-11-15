@@ -10,9 +10,6 @@ public class Evenement {
 	//attributes
 	private GregorianCalendar dateHeureDebut;
 	private GregorianCalendar dateHeureFin;
-	
-	
-
 	private String nom;
 	private String lieu;
 	private Agenda agenda;
@@ -41,6 +38,8 @@ public class Evenement {
 	public void setDateHeureFin(GregorianCalendar uneDateHeureFin) {
 		if(this.getDateHeureDebut()!=null && uneDateHeureFin.after(this.getDateHeureDebut()))
 			this.dateHeureFin = uneDateHeureFin;
+		else
+			this.dateHeureFin = this.getDateHeureDebut();
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -52,6 +51,13 @@ public class Evenement {
 		this.agenda = agenda;
 	}
 	
+	//constructors
+	public Evenement(){
+		this.setNom("Mon événement");
+		this.setDateHeureDebut(new GregorianCalendar());
+		this.setDateHeureFin(new GregorianCalendar());
+		
+	}
 	//methods
 	public void changerAgenda(Agenda agenda) {
 		this.getAgenda().supprimer(this);
@@ -59,7 +65,7 @@ public class Evenement {
 	}
 	
 	public void afficherEvenement(){
-		System.out.println(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : le "+this.getDateHeureDebut().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeureDebut().get(Calendar.MONTH)+"/"+this.getDateHeureDebut().get(Calendar.YEAR)+" "+this.getDateHeureDebut().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeureDebut().get(Calendar.MINUTE)+", à "+this.getLieu());
+		System.out.println(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+this.getDateHeureDebut().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeureDebut().get(Calendar.MONTH)+"/"+this.getDateHeureDebut().get(Calendar.YEAR)+" "+this.getDateHeureDebut().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeureDebut().get(Calendar.MINUTE)+" au "+this.getDateHeureFin().get(Calendar.DAY_OF_MONTH)+"/"+this.getDateHeureFin().get(Calendar.MONTH)+"/"+this.getDateHeureFin().get(Calendar.YEAR)+" "+this.getDateHeureFin().get(Calendar.HOUR_OF_DAY)+":"+this.getDateHeureFin().get(Calendar.MINUTE)+"  à "+this.getLieu());
 	}
 
 }
