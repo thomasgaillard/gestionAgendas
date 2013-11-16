@@ -5,8 +5,8 @@ package gestion.calendrier;
 import gestion.agendas.Evenement;
 import java.util.Comparator;
 
-public class ComparateurHeureDebut implements Comparator<Evenement> {
+public class ComparateurHeureFin implements Comparator<Evenement> {
 	public int compare(Evenement e1, Evenement e2){
-        return e1.getDateHeureDebut().compareTo(e2.getDateHeureDebut());
+        return e1.getDateHeureFin().compareTo(e2.getDateHeureFin());
 	}
 }

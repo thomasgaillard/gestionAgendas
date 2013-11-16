@@ -4,18 +4,25 @@ package gestion.agendas;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class Evenement {
-
 	//attributes
 	private GregorianCalendar dateHeureDebut;
 	private GregorianCalendar dateHeureFin;
 	private String nom;
 	private String lieu;
 	private Agenda agenda;
+	
+	//constructors
+	public Evenement(){
+		this.setNom("Mon événement");
+		this.setLieu("");
+		this.setDateHeureDebut(new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris")));
+		this.setDateHeureFin(new GregorianCalendar());
+		
+	}
 	
 	//getters
 	public GregorianCalendar getDateHeureDebut() {
@@ -56,26 +63,16 @@ public class Evenement {
 		this.agenda = agenda;
 	}
 	
-	//constructors
-	public Evenement(){
-		this.setNom("Mon événement");
-		this.setDateHeureDebut(new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris")));
-		this.setDateHeureFin(new GregorianCalendar());
-		
-	}
 	//methods
 	public void changerAgenda(Agenda agenda) {
 		this.getAgenda().supprimer(this);
 		agenda.ajouter(this);
 	}
 	
-	public void afficherEvenement(){
-			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-			
-			java.util.Date dateDebut = this.getDateHeureDebut().getTime(); 		
-			java.util.Date dateFin = this.getDateHeureFin().getTime(); 
-
-		System.out.println(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+dateFormat.format(dateDebut)+" au "+dateFormat.format(dateFin)+"  à "+this.getLieu());
+	public String toString(){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		java.util.Date dateDebut = this.getDateHeureDebut().getTime();
+		java.util.Date dateFin = this.getDateHeureFin().getTime();
+		return(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+dateFormat.format(dateDebut)+" au "+dateFormat.format(dateFin)+"  à "+this.getLieu()+"\n");
 	}
-
 }

@@ -9,10 +9,14 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 
 public class Calendrier {
-
 	//attributes
 	private ArrayList<Agenda> agendas;
 
+	//constructor
+	public Calendrier() {
+		this.agendas = new ArrayList<Agenda>();
+	}
+	
 	//methods
 	public void ajouter(Agenda unAgenda) {
 		this.agendas.add(unAgenda);
@@ -33,7 +37,7 @@ public class Calendrier {
 			case DATEHEUREFIN: Collections.sort(evts, new ComparateurHeureFin()); break; 
 			case NOM: Collections.sort(evts, new ComparateurNom()); break; 
 			case LIEU: Collections.sort(evts, new ComparateurLieu()); break; 
-			default: break;
+			case AGENDA: break;
 		}
 		return evts;
 	}
@@ -55,6 +59,7 @@ public class Calendrier {
 		DATEHEUREDEBUT,
 		DATEHEUREFIN,
 		NOM,
-		LIEU
+		LIEU,
+		AGENDA
 	}
 }

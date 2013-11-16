@@ -5,7 +5,6 @@ package gestion.agendas;
 import java.util.ArrayList;
 
 public class Agenda {
-
 	//attributes
 	private String nom;
 	private ArrayList<Evenement> evenements;
@@ -39,10 +38,11 @@ public class Agenda {
 	public void supprimer(Evenement unEvt) {
 		this.evenements.remove(unEvt);
 	}
-	public void afficherAgenda(){
-		System.out.println(this.getNom());
+	public String toString(){
+		String ret = this.getNom() + "\n";
 		for(Evenement evt: this.evenements){
-			evt.afficherEvenement();
+			ret += evt.toString();
 		}
+		return ret;
 	}
 }
