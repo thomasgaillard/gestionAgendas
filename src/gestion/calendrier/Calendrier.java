@@ -2,11 +2,10 @@
 
 package gestion.calendrier;
 
-import fr.univsavoie.iae.tm.objetsGeometriques.objets.ObjetGeometrique;
 import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 
 public class Calendrier {
@@ -24,11 +23,19 @@ public class Calendrier {
 
 	//sort and filter methods
 	public ArrayList<Evenement> tri(String unAttribut) {
-		ArrayList<Evenement> merged = new ArrayList<Evenement>();
+		ArrayList<Evenement> evts = new ArrayList<Evenement>();
 		for(Agenda a:this.agendas){
-			merged.addAll(a.tri(unAttribut));
+			evts.addAll(a.getEvenements());
 		}
-		return merged;
+		Attr attribut = Attr.valueOf(unAttribut.toUpperCase());
+		switch (attribut) {
+			case DATEHEUREDEBUT: Collections.sort(evts, new ComparateurHeureDebut()); break;
+			case DATEHEUREFIN: Collections.sort(evts, new ComparateurHeureFin()); break; 
+			case NOM: Collections.sort(evts, new ComparateurNom()); break; 
+			case LIEU: Collections.sort(evts, new ComparateurLieu()); break; 
+			default: break;
+		}
+		return evts;
 	}
 	public void filtreDate(GregorianCalendar uneDate) {
 		//TODO
@@ -43,4 +50,11 @@ public class Calendrier {
 		//TODO
 	}
 	
+	//enums
+	public enum Attr {
+		DATEHEUREDEBUT,
+		DATEHEUREFIN,
+		NOM,
+		LIEU
+	}
 }
