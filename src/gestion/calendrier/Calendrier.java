@@ -14,21 +14,21 @@ public class Calendrier {
 
 	//constructor
 	public Calendrier() {
-		this.agendas = new ArrayList<Agenda>();
+		this.setAgendas(new ArrayList<Agenda>());
 	}
 	
 	//methods
 	public void ajouter(Agenda unAgenda) {
-		this.agendas.add(unAgenda);
+		this.getAgendas().add(unAgenda);
 	}
 	public void supprimer(Agenda unAgenda) {
-		this.agendas.remove(unAgenda);
+		this.getAgendas().remove(unAgenda);
 	}
 
 	//sort and filter methods
 	public ArrayList<Evenement> tri(String unAttribut) {
 		ArrayList<Evenement> evts = new ArrayList<Evenement>();
-		for(Agenda a:this.agendas){
+		for(Agenda a:this.getAgendas()){
 			evts.addAll(a.getEvenements());
 		}
 		Attr attribut = Attr.valueOf(unAttribut.toUpperCase());
@@ -54,6 +54,14 @@ public class Calendrier {
 		//TODO
 	}
 	
+	public ArrayList<Agenda> getAgendas() {
+		return agendas;
+	}
+
+	public void setAgendas(ArrayList<Agenda> agendas) {
+		this.agendas = agendas;
+	}
+
 	//enums
 	public enum Attr {
 		DATEHEUREDEBUT,
