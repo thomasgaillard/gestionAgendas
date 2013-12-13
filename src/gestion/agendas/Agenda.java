@@ -21,7 +21,8 @@ public class Agenda {
 	public String getNom() {
 		return this.nom;
 	}
-	public ArrayList<Evenement> getEvenements(){
+	
+	public ArrayList<Evenement> getEvenements() {
 		return this.evenements;
 	}
 
@@ -40,11 +41,15 @@ public class Agenda {
 		this.evenements.remove(unEvt);
 	}
 	
-	public String toString(){
+	public String toString() {
 		String ret = this.getNom() + "\n";
 		for(Evenement evt: this.evenements){
 			ret += evt.toString();
 		}
 		return ret;
+	}
+	
+	public void export(){
+		
 	}
 }

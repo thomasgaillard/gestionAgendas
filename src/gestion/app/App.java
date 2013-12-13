@@ -120,5 +120,8 @@ public class App {
 		for(Evenement e: evts){
 			System.out.print(e.toString());
 		}
+		
+		System.out.println("\n----- Jeu de Tests 12 (export ics) -----");
+		cal.export();
 	}
 }

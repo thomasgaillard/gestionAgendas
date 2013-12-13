@@ -17,6 +17,16 @@ public class Calendrier {
 		this.setAgendas(new ArrayList<Agenda>());
 	}
 	
+	//getters
+	public ArrayList<Agenda> getAgendas() {
+		return agendas;
+	}
+
+	//setters
+	public void setAgendas(ArrayList<Agenda> agendas) {
+		this.agendas = agendas;
+	}
+	
 	//methods
 	public void ajouter(Agenda unAgenda) {
 		this.getAgendas().add(unAgenda);
@@ -24,6 +34,12 @@ public class Calendrier {
 	
 	public void supprimer(Agenda unAgenda) {
 		this.getAgendas().remove(unAgenda);
+	}
+	
+	public void export(){
+		for(Agenda a:this.getAgendas()) {
+			a.export();
+		}
 	}
 
 	//sort and filter methods
@@ -83,14 +99,6 @@ public class Calendrier {
 				evtsFiltered.addAll(a.getEvenements());
 		}
 		return evtsFiltered;
-	}
-	
-	public ArrayList<Agenda> getAgendas() {
-		return agendas;
-	}
-
-	public void setAgendas(ArrayList<Agenda> agendas) {
-		this.agendas = agendas;
 	}
 
 	//enums

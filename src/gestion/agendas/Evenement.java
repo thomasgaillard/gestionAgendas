@@ -21,22 +21,25 @@ public class Evenement {
 		this.setLieu("");
 		this.setDateHeureDebut(new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris")));
 		this.setDateHeureFin(new GregorianCalendar());
-		
 	}
 	
 	//getters
 	public GregorianCalendar getDateHeureDebut() {
 		return this.dateHeureDebut;
 	}
+	
 	public GregorianCalendar getDateHeureFin() {
 		return dateHeureFin;
 	}
+	
 	public String getNom() {
 		return this.nom;
 	}
+	
 	public String getLieu() {
 		return this.lieu;
 	}
+	
 	public Agenda getAgenda() {
 		return this.agenda;
 	}
@@ -47,18 +50,22 @@ public class Evenement {
 		if(uneDateHeureDebut.after(this.getDateHeureFin()))
 			this.dateHeureFin = uneDateHeureDebut;
 	}
+	
 	public void setDateHeureFin(GregorianCalendar uneDateHeureFin) {
 		if(uneDateHeureFin.after(this.getDateHeureDebut()))
 			this.dateHeureFin = uneDateHeureFin;
 		else
 			this.dateHeureFin = this.getDateHeureDebut();
 	}
+	
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
 	public void setLieu(String lieu) {
 		this.lieu = lieu;
 	}
+	
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
 	}
