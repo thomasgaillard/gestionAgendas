@@ -94,7 +94,11 @@ public class App extends JFrame {
 		mntmvnement_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int[] selection = table.getSelectedRows();
-				System.out.println(selection[0]);
+				
+				for(Agenda a: cal.getAgendas()){
+					a.getEvenements().remove(evts.get(selection[0]));
+				}
+				
 			}
 		});
 		mnSupprimer.add(mntmvnement_1);
