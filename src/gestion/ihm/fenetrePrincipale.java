@@ -20,11 +20,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class fenetrePrincipale extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private Calendrier cal;
 
 	/**
 	 * Launch the application.
@@ -46,7 +49,7 @@ public class fenetrePrincipale extends JFrame {
 	 * Create the frame.
 	 */
 	public fenetrePrincipale() {
-		Calendrier cal = loadTests();
+		cal = loadTests();
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 792, 556);
@@ -62,23 +65,47 @@ public class fenetrePrincipale extends JFrame {
 		
 		JMenuItem mntmvnement = new JMenuItem("\u00C9v\u00E9nement");
 		mnAjouter.add(mntmvnement);
+		
+		JMenu mnTrier = new JMenu("Trier");
+		menuBar.add(mnTrier);
+		
+		JMenuItem mntmParNom = new JMenuItem("Par nom");
+		mntmParNom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<Evenement> evts = new ArrayList<Evenement>();
+				evts = cal.tri("nom");
+				remplirTableau(evts);
+				System.out.println("coucou");
+			}
+		});
+		mnTrier.add(mntmParNom);
+		
+		JMenuItem mntmParDateDe = new JMenuItem("Par date de d\u00E9but");
+		mnTrier.add(mntmParDateDe);
+		
+		JMenuItem mntmParDateDe_1 = new JMenuItem("Par date de fin");
+		mnTrier.add(mntmParDateDe_1);
+		
+		JMenuItem mntmParLieu = new JMenuItem("Par lieu");
+		mnTrier.add(mntmParLieu);
+		
+		JMenuItem mntmParAgenda = new JMenuItem("Par agenda");
+		mnTrier.add(mntmParAgenda);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		table = new JTable();
-		contentPane.add(table, BorderLayout.CENTER);
+		//table = new JTable();
+		//contentPane.add(table, BorderLayout.CENTER);
 		
-		remplirTableau(cal);
-	}
-	
-	public void remplirTableau(Calendrier cal){
 		ArrayList<Evenement> evts = new ArrayList<Evenement>();
 		evts = cal.tri("agenda");
+		remplirTableau(evts);
+	}
+	
+	public void remplirTableau(ArrayList<Evenement> evts){
 		Object[][] data = new Object[evts.size()][5];
-		 
-		
         
         int i = 0;
         for(Evenement e: evts){
@@ -91,14 +118,13 @@ public class fenetrePrincipale extends JFrame {
 		}
              
         String  title[] = {"Événements","Date/Heure de début","Date/Heure de fin","Lieu","Agenda"};
-        table = new JTable(data, title);
-         
+        table =  new JTable(data, title);
         this.getContentPane().add(new JScrollPane(table));
 		}
 	
 	public Calendrier loadTests(){
 		//calendar
-		Calendrier cal = new Calendrier();
+		cal = new Calendrier();
 		
 		//agendas
 		Agenda ag1 = new Agenda("Perso");
