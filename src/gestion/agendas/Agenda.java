@@ -35,9 +35,11 @@ public class Agenda {
 		this.evenements.add(unEvt);
 		unEvt.setAgenda(this);
 	}
+	
 	public void supprimer(Evenement unEvt) {
 		this.evenements.remove(unEvt);
 	}
+	
 	public String toString(){
 		String ret = this.getNom() + "\n";
 		for(Evenement evt: this.evenements){

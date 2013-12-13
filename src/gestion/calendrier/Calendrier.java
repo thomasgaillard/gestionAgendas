@@ -21,6 +21,7 @@ public class Calendrier {
 	public void ajouter(Agenda unAgenda) {
 		this.getAgendas().add(unAgenda);
 	}
+	
 	public void supprimer(Agenda unAgenda) {
 		this.getAgendas().remove(unAgenda);
 	}
@@ -41,17 +42,47 @@ public class Calendrier {
 		}
 		return evts;
 	}
-	public void filtreDate(GregorianCalendar uneDate) {
-		//TODO
+	
+	public ArrayList<Evenement> filtreDate(GregorianCalendar uneDate) {
+		ArrayList<Evenement> evtsFiltered = new ArrayList<Evenement>();
+		for(Agenda a:this.getAgendas()){
+			for(Evenement e:a.getEvenements()){
+				if((e.getDateHeureDebut().before(uneDate) && e.getDateHeureFin().after(uneDate)) || e.getDateHeureDebut().equals(uneDate) || e.getDateHeureFin().equals(uneDate))
+					evtsFiltered.add(e);
+			}
+		}
+		return evtsFiltered;
 	}
-	public void filtreNom(String unNom) {
-		//TODO
+	
+	public ArrayList<Evenement> filtreNom(String unNom) {
+		ArrayList<Evenement> evtsFiltered = new ArrayList<Evenement>();
+		for(Agenda a:this.getAgendas()){
+			for(Evenement e:a.getEvenements()){
+				if(e.getNom().toLowerCase().contains(unNom.toLowerCase()))
+					evtsFiltered.add(e);
+			}
+		}
+		return evtsFiltered;
 	}
-	public void filtreLieu(String unLieu) {
-		//TODO
+	
+	public ArrayList<Evenement> filtreLieu(String unLieu) {
+		ArrayList<Evenement> evtsFiltered = new ArrayList<Evenement>();
+		for(Agenda a:this.getAgendas()){
+			for(Evenement e:a.getEvenements()){
+				if(e.getLieu().toLowerCase().contains(unLieu.toLowerCase()))
+					evtsFiltered.add(e);
+			}
+		}
+		return evtsFiltered;
 	}
-	public void filtreAgenda(Agenda unAgenda) {
-		//TODO
+	
+	public ArrayList<Evenement> filtreAgenda(Agenda unAgenda) {
+		ArrayList<Evenement> evtsFiltered = new ArrayList<Evenement>();
+		for(Agenda a:this.getAgendas()){
+			if(a == unAgenda)
+				evtsFiltered.addAll(a.getEvenements());
+		}
+		return evtsFiltered;
 	}
 	
 	public ArrayList<Agenda> getAgendas() {

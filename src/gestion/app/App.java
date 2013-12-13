@@ -96,5 +96,29 @@ public class App {
 		for(Evenement e: evts){
 			System.out.print(e.toString());
 		}
+		
+		System.out.println("\n----- Jeu de Tests 8 (Filtre sur nom) -----");
+		evts = cal.filtreNom("rdv");
+		for(Evenement e: evts){
+			System.out.print(e.toString());
+		}
+		
+		System.out.println("\n----- Jeu de Tests 9 (Filtre sur lieu) -----");
+		evts = cal.filtreLieu("annecy");
+		for(Evenement e: evts){
+			System.out.print(e.toString());
+		}
+		
+		System.out.println("\n----- Jeu de Tests 10 (Filtre sur date) -----");
+		evts = cal.filtreDate(new GregorianCalendar(2013,11,8,11,35));
+		for(Evenement e: evts){
+			System.out.print(e.toString());
+		}
+		
+		System.out.println("\n----- Jeu de Tests 11 (Filtre sur agenda) -----");
+		evts = cal.filtreAgenda(ag2);
+		for(Evenement e: evts){
+			System.out.print(e.toString());
+		}
 	}
 }
