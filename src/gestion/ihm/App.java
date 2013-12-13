@@ -99,6 +99,10 @@ public class App extends JFrame {
 					a.getEvenements().remove(evts.get(selection[0]));
 				}
 				
+				getContentPane().remove(jspane);
+				evts = cal.tri("agenda");
+				remplirTableau(evts);
+				
 			}
 		});
 		mnSupprimer.add(mntmvnement_1);
