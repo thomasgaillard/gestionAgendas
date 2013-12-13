@@ -69,6 +69,12 @@ public class Evenement {
 		agenda.ajouter(this);
 	}
 	
+	public String formatterDate(GregorianCalendar date){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		java.util.Date theDate = date.getTime();
+		return dateFormat.format(theDate);
+	}
+	
 	public String toString(){
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		java.util.Date dateDebut = this.getDateHeureDebut().getTime();
