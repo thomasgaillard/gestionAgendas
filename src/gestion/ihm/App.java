@@ -29,8 +29,9 @@ public class App extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	private Calendrier cal;
 	private JScrollPane jspane;
+	private Calendrier cal;
+	private ArrayList<Evenement> evts;
 
 	/**
 	 * Launch the application.
@@ -55,7 +56,7 @@ public class App extends JFrame {
 		
 		setTitle("myCAL");
 		
-		cal = loadTests();
+		cal = tests();
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 792, 556);
@@ -80,12 +81,23 @@ public class App extends JFrame {
 				Evenement evNew = new Evenement();
 				cal.getAgendas().get(0).ajouter(evNew);
 				getContentPane().remove(jspane);
-				ArrayList<Evenement> evts = new ArrayList<Evenement>();
 				evts = cal.tri("agenda");
 				remplirTableau(evts);
 			}
 		});
 		mnAjouter.add(mntmvnement);
+		
+		JMenu mnSupprimer = new JMenu("Supprimer");
+		menuBar.add(mnSupprimer);
+		
+		JMenuItem mntmvnement_1 = new JMenuItem("\u00C9v\u00E9nement");
+		mntmvnement_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int[] selection = table.getSelectedRows();
+				System.out.println(selection[0]);
+			}
+		});
+		mnSupprimer.add(mntmvnement_1);
 		
 		JMenu mnTrier = new JMenu("Trier");
 		menuBar.add(mnTrier);
@@ -94,7 +106,6 @@ public class App extends JFrame {
 		mntmParNom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				getContentPane().remove(jspane);
-				ArrayList<Evenement> evts = new ArrayList<Evenement>();
 				evts = cal.tri("nom");
 				remplirTableau(evts);
 			}
@@ -105,7 +116,6 @@ public class App extends JFrame {
 		mntmParDateDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				getContentPane().remove(jspane);
-				ArrayList<Evenement> evts = new ArrayList<Evenement>();
 				evts = cal.tri("dateHeureDebut");
 				remplirTableau(evts);
 			}
@@ -116,7 +126,6 @@ public class App extends JFrame {
 		mntmParDateDe_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().remove(jspane);
-				ArrayList<Evenement> evts = new ArrayList<Evenement>();
 				evts = cal.tri("dateHeureFin");
 				remplirTableau(evts);
 			}
@@ -127,7 +136,6 @@ public class App extends JFrame {
 		mntmParLieu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().remove(jspane);
-				ArrayList<Evenement> evts = new ArrayList<Evenement>();
 				evts = cal.tri("lieu");
 				remplirTableau(evts);
 			}
@@ -138,7 +146,6 @@ public class App extends JFrame {
 		mntmParAgenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().remove(jspane);
-				ArrayList<Evenement> evts = new ArrayList<Evenement>();
 				evts = cal.tri("agenda");
 				remplirTableau(evts);
 			}
@@ -152,7 +159,6 @@ public class App extends JFrame {
 		//table = new JTable();
 		//contentPane.add(table, BorderLayout.CENTER);
 		
-		ArrayList<Evenement> evts = new ArrayList<Evenement>();
 		evts = cal.tri("agenda");
 		remplirTableau(evts);
 	}
@@ -178,7 +184,7 @@ public class App extends JFrame {
         SwingUtilities.updateComponentTreeUI(this.getContentPane());
 		}
 	
-	public Calendrier loadTests(){
+	public Calendrier tests(){
 		//calendar
 		cal = new Calendrier();
 		
