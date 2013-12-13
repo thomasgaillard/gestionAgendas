@@ -2,6 +2,8 @@
 
 package gestion.agendas;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Agenda {
@@ -12,6 +14,7 @@ public class Agenda {
 	//constructor
 	public Agenda() {
 	}
+	
 	public Agenda(String unNom) {
 		this.setNom(unNom);
 		this.evenements = new ArrayList<Evenement>();
@@ -49,7 +52,24 @@ public class Agenda {
 		return ret;
 	}
 	
-	public void export(){
-		
+	public void exportIcs(){
+		try{
+			PrintWriter out  = new PrintWriter(new FileWriter(this.getNom() + ".ics"));
+			out.println("BEGIN:VCALENDAR\nMETHOD:PUBLISH\nVERSION:2.0\nX-WR-CALNAME:"+this.getNom());
+			for(Evenement evt: this.evenements){
+				out.println("BEGIN:VEVENT");
+				out.println("DTEND;TZID=Europe/Paris:"+evt.formatterDate(evt.getDateHeureFin()));
+				out.println("SUMMARY:"+evt.getNom());
+				if(evt.getLieu() != "")
+					out.println("LOCATION:"+evt.getLieu());
+				out.println("DTSTART;TZID=Europe/Paris:"+evt.formatterDate(evt.getDateHeureDebut()));
+				out.println("END:VEVENT");
+			}
+			out.println("END:VCALENDAR");
+			out.close();
+		}
+		catch(Exception e){
+	      e.printStackTrace();
+	    }
 	}
 }

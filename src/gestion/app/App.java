@@ -10,7 +10,6 @@ import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
 
 public class App {
-
 	//main method
 	public static void main (String []args) {
 		//calendar
@@ -122,6 +121,9 @@ public class App {
 		}
 		
 		System.out.println("\n----- Jeu de Tests 12 (export ics) -----");
-		cal.export();
+		cal.exportIcs();
+		
+		System.out.println("\n----- Jeu de Tests 13 (import ics) -----");
+		cal.importIcs("/fzer/zer.ics");
 	}
 }

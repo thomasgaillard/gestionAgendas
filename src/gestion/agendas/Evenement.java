@@ -83,9 +83,6 @@ public class Evenement {
 	}
 	
 	public String toString(){
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		java.util.Date dateDebut = this.getDateHeureDebut().getTime();
-		java.util.Date dateFin = this.getDateHeureFin().getTime();
-		return(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+dateFormat.format(dateDebut)+" au "+dateFormat.format(dateFin)+"  ˆ "+this.getLieu()+"\n");
+		return(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+this.formatterDate(this.getDateHeureDebut())+" au "+this.formatterDate(this.getDateHeureFin())+"  ˆ "+this.getLieu()+"\n");
 	}
 }

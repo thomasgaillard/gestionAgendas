@@ -36,10 +36,14 @@ public class Calendrier {
 		this.getAgendas().remove(unAgenda);
 	}
 	
-	public void export(){
+	public void exportIcs(){
 		for(Agenda a:this.getAgendas()) {
-			a.export();
+			a.exportIcs();
 		}
+	}
+	
+	public void importIcs(String fichier){
+		
 	}
 
 	//sort and filter methods
