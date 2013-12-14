@@ -173,20 +173,8 @@ public class App extends JFrame {
 	
 	public void remplirTableau(ArrayList<Evenement> evts){
 		
-		Object[][] data = new Object[evts.size()][5];
-        
-        int i = 0;
-        for(Evenement e: evts){
-        	data[i][0] = e.getNom();
-        	data[i][1] = e.formatterDate(e.getDateHeureDebut());
-        	data[i][2] = e.formatterDate(e.getDateHeureFin());
-        	data[i][3] = e.getLieu();
-        	data[i][4] = e.getAgenda().getNom();
-        	i++;
-		}
-             
-        String  title[] = {"Événements","Date/Heure de début","Date/Heure de fin","Lieu","Agenda"};
-        table =  new JTable(data, title);
+		TableauDynamique td = new TableauDynamique(evts);
+        table =  new JTable(td);
         jspane = new JScrollPane(table);
         this.getContentPane().add(jspane);
         SwingUtilities.updateComponentTreeUI(this.getContentPane());
