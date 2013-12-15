@@ -124,5 +124,6 @@ public class Test {
 		
 		System.out.println("\n----- Jeu de Tests 13 (import ics) -----");
 		cal.importIcs("ExempleImport.ics");
+		System.out.println(cal.toString());
 	}
 }

@@ -3,7 +3,9 @@
 package gestion.agendas;
 
 import gestion.calendrier.Calendrier;
+
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
@@ -83,13 +85,25 @@ public class Evenement {
 		Agenda ag = new Agenda(nomAgenda);
 		cal.ajouter(ag);
 		ag.ajouter(this);
-		//agenda.ajouter(this);
 	}
 	
 	public String formatterDate(GregorianCalendar date){
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		java.util.Date theDate = date.getTime();
 		return dateFormat.format(theDate);
+	}
+	
+	public GregorianCalendar deformatterDate(String date){
+		GregorianCalendar cal = new GregorianCalendar();
+		try {
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			java.util.Date d;
+			d = dateFormat.parse(date);
+			cal.setTime(d);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return cal;
 	}
 	
 	public String toString(){

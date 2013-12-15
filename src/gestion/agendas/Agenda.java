@@ -45,7 +45,7 @@ public class Agenda {
 	}
 	
 	public String toString() {
-		String ret = this.getNom() + "\n";
+		String ret = "\n - " + this.getNom() + "\n";
 		for(Evenement evt: this.evenements){
 			ret += evt.toString();
 		}

@@ -4,6 +4,7 @@ package gestion.calendrier;
 
 import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -67,10 +68,10 @@ public class Calendrier {
 		    		ev.setLieu(line.substring(line.indexOf(":")+1));
 		    	}
 		    	if(line.startsWith("DTEND;")){
-		    		ev.setDateHeureFin(ev.deformatterDate(line.substring(line.indexOf(";")+1)));
+		    		ev.setDateHeureFin(ev.deformatterDate(line.substring(line.indexOf(":")+1)));
 		    	}
 		    	if(line.startsWith("DTSTART;")){
-		    		ev.setDateHeureDebut(ev.deformatterDate(line.substring(line.indexOf(";")+1)));
+		    		ev.setDateHeureDebut(ev.deformatterDate(line.substring(line.indexOf(":")+1)));
 		    	}
 		    	if(line.startsWith("END:VEVENT")){
 		    		ag.ajouter(ev);
@@ -82,6 +83,14 @@ public class Calendrier {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public String toString() {
+		String ret = "";
+		for(Agenda ag: this.agendas){
+			ret += ag.toString();
+		}
+		return ret;
 	}
 
 	//sort and filter methods
