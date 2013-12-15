@@ -161,6 +161,20 @@ public class App extends JFrame {
 			}
 		});
 		mnTrier.add(mntmParAgenda);
+		
+		JMenu mnPartage = new JMenu("Partage");
+		menuBar.add(mnPartage);
+		
+		JMenuItem mntmExporter = new JMenuItem("Exporter");
+		mntmExporter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cal.exportIcs();
+			}
+		});
+		mnPartage.add(mntmExporter);
+		
+		JMenuItem mntmImporterics = new JMenuItem("Importer .ics");
+		mnPartage.add(mntmImporterics);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
