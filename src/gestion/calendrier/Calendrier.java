@@ -7,6 +7,9 @@ import gestion.agendas.Evenement;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -68,10 +71,10 @@ public class Calendrier {
 		    		ev.setLieu(line.substring(line.indexOf(":")+1));
 		    	}
 		    	if(line.startsWith("DTEND;")){
-		    		ev.setDateHeureFin(ev.deformatterDate(line.substring(line.indexOf(":")+1)));
+		    		ev.setDateHeureFin(Calendrier.deformatterDate(line.substring(line.indexOf(":")+1)));
 		    	}
 		    	if(line.startsWith("DTSTART;")){
-		    		ev.setDateHeureDebut(ev.deformatterDate(line.substring(line.indexOf(":")+1)));
+		    		ev.setDateHeureDebut(Calendrier.deformatterDate(line.substring(line.indexOf(":")+1)));
 		    	}
 		    	if(line.startsWith("END:VEVENT")){
 		    		ag.ajouter(ev);
@@ -150,6 +153,25 @@ public class Calendrier {
 				evtsFiltered.addAll(a.getEvenements());
 		}
 		return evtsFiltered;
+	}
+	
+	public static String formatterDate(GregorianCalendar date){
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		java.util.Date theDate = date.getTime();
+		return dateFormat.format(theDate);
+	}
+	
+	public static GregorianCalendar deformatterDate(String date){
+		GregorianCalendar cal = new GregorianCalendar();
+		try {
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			java.util.Date d;
+			d = dateFormat.parse(date);
+			cal.setTime(d);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return cal;
 	}
 
 	//enums

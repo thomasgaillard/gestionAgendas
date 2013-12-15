@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JButton;
 
 public class App extends JFrame {
 	private static final long serialVersionUID = -3242724827400274900L;
@@ -32,7 +33,6 @@ public class App extends JFrame {
 	private Calendrier cal;
 	private ArrayList<Evenement> evts;
 	private JTextField textField;
-
 	/**
 	 * Launch the application.
 	 */
@@ -73,8 +73,7 @@ public class App extends JFrame {
 				Evenement evNew = new Evenement();
 				cal.getAgendas().get(0).ajouter(evNew);
 				getContentPane().remove(jspane);
-				evts = cal.tri("agenda");
-				remplirTableau(evts);
+				remplirTableau(cal.tri("agenda"));
 			}
 		});
 		mnAjouter.add(mntmvnement);
@@ -92,8 +91,7 @@ public class App extends JFrame {
 				}
 				
 				getContentPane().remove(jspane);
-				evts = cal.tri("agenda");
-				remplirTableau(evts);
+				remplirTableau(cal.tri("agenda"));
 				
 			}
 		});
@@ -106,8 +104,7 @@ public class App extends JFrame {
 		mntmParNom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				getContentPane().remove(jspane);
-				evts = cal.tri("nom");
-				remplirTableau(evts);
+				remplirTableau(cal.tri("nom"));
 			}
 		});
 		mnTrier.add(mntmParNom);
@@ -116,8 +113,7 @@ public class App extends JFrame {
 		mntmParDateDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				getContentPane().remove(jspane);
-				evts = cal.tri("dateHeureDebut");
-				remplirTableau(evts);
+				remplirTableau(cal.tri("dateHeureDebut"));
 			}
 		});
 		mnTrier.add(mntmParDateDe);
@@ -126,8 +122,7 @@ public class App extends JFrame {
 		mntmParDateDe_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().remove(jspane);
-				evts = cal.tri("dateHeureFin");
-				remplirTableau(evts);
+				remplirTableau(cal.tri("dateHeureFin"));
 			}
 		});
 		mnTrier.add(mntmParDateDe_1);
@@ -136,8 +131,7 @@ public class App extends JFrame {
 		mntmParLieu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().remove(jspane);
-				evts = cal.tri("lieu");
-				remplirTableau(evts);
+				remplirTableau(cal.tri("lieu"));
 			}
 		});
 		mnTrier.add(mntmParLieu);
@@ -146,8 +140,7 @@ public class App extends JFrame {
 		mntmParAgenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().remove(jspane);
-				evts = cal.tri("agenda");
-				remplirTableau(evts);
+				remplirTableau(cal.tri("agenda"));
 			}
 		});
 		mnTrier.add(mntmParAgenda);
@@ -189,20 +182,8 @@ public class App extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		textField = new JTextField();
-        textField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyReleased(KeyEvent e) {
-        		System.out.println(textField.getText());
-        		remplirTableau(cal.filtreNom(textField.getText()));
-        	}
-        });
-        contentPane.add(textField, BorderLayout.SOUTH);
-        textField.setColumns(10);
         
-		evts = cal.tri("agenda");
-		remplirTableau(evts);
+		remplirTableau(cal.tri("agenda"));
 		
 		
 	}
@@ -212,8 +193,25 @@ public class App extends JFrame {
 		TableauDynamique td = new TableauDynamique(cal, evts);
         table =  new JTable(td); 
         jspane = new JScrollPane(table);
-        this.getContentPane().add(jspane);
+        this.contentPane.add(jspane);
         SwingUtilities.updateComponentTreeUI(this.getContentPane());
+        
+        JPanel panel = new JPanel();
+        contentPane.add(panel, BorderLayout.SOUTH);
+        
+        textField = new JTextField();
+        panel.add(textField);
+        textField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyReleased(KeyEvent e) {
+        		getContentPane().remove(jspane);
+        		remplirTableau(cal.filtreNom(textField.getText()));
+        	}
+        });
+        textField.setColumns(10);
+        
+        JButton btnNewButton = new JButton("New button");
+        panel.add(btnNewButton);
 		}
 	
 	public Calendrier tests(){

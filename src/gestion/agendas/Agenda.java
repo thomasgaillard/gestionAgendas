@@ -2,6 +2,8 @@
 
 package gestion.agendas;
 
+import gestion.calendrier.Calendrier;
+
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -58,11 +60,11 @@ public class Agenda {
 			out.println("BEGIN:VCALENDAR\nMETHOD:PUBLISH\nVERSION:2.0\nX-WR-CALNAME:"+this.getNom());
 			for(Evenement evt: this.evenements){
 				out.println("BEGIN:VEVENT");
-				out.println("DTEND;TZID=Europe/Paris:"+evt.formatterDate(evt.getDateHeureFin()));
+				out.println("DTEND;TZID=Europe/Paris:"+Calendrier.formatterDate(evt.getDateHeureFin()));
 				out.println("SUMMARY:"+evt.getNom());
 				if(evt.getLieu() != "")
 					out.println("LOCATION:"+evt.getLieu());
-				out.println("DTSTART;TZID=Europe/Paris:"+evt.formatterDate(evt.getDateHeureDebut()));
+				out.println("DTSTART;TZID=Europe/Paris:"+Calendrier.formatterDate(evt.getDateHeureDebut()));
 				out.println("END:VEVENT");
 			}
 			out.println("END:VCALENDAR");
