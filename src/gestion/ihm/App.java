@@ -20,6 +20,9 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class App extends JFrame {
 	private static final long serialVersionUID = -3242724827400274900L;
@@ -28,6 +31,7 @@ public class App extends JFrame {
 	private JScrollPane jspane;
 	private Calendrier cal;
 	private ArrayList<Evenement> evts;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -148,6 +152,26 @@ public class App extends JFrame {
 		});
 		mnTrier.add(mntmParAgenda);
 		
+		JMenu mnFiltrer = new JMenu("Filtrer");
+		menuBar.add(mnFiltrer);
+		
+		JMenuItem mntmParNom_1 = new JMenuItem("Par nom");
+		mntmParNom_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		mnFiltrer.add(mntmParNom_1);
+		
+		JMenuItem mntmParDate = new JMenuItem("Par date");
+		mnFiltrer.add(mntmParDate);
+		
+		JMenuItem mntmParLieu_1 = new JMenuItem("Par lieu");
+		mnFiltrer.add(mntmParLieu_1);
+		
+		JMenuItem mntmParAgenda_1 = new JMenuItem("Par agenda");
+		mnFiltrer.add(mntmParAgenda_1);
+		
 		JMenu mnPartage = new JMenu("Partage");
 		menuBar.add(mnPartage);
 		
@@ -166,9 +190,17 @@ public class App extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		//table = new JTable();
-		//contentPane.add(table, BorderLayout.CENTER);
-		
+		textField = new JTextField();
+        textField.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyReleased(KeyEvent e) {
+        		System.out.println(textField.getText());
+        		remplirTableau(cal.filtreNom(textField.getText()));
+        	}
+        });
+        contentPane.add(textField, BorderLayout.SOUTH);
+        textField.setColumns(10);
+        
 		evts = cal.tri("agenda");
 		remplirTableau(evts);
 		
@@ -178,8 +210,7 @@ public class App extends JFrame {
 	public void remplirTableau(ArrayList<Evenement> evts){
 		
 		TableauDynamique td = new TableauDynamique(cal, evts);
-        table =  new JTable(td);
-        
+        table =  new JTable(td); 
         jspane = new JScrollPane(table);
         this.getContentPane().add(jspane);
         SwingUtilities.updateComponentTreeUI(this.getContentPane());
