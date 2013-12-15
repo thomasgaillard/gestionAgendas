@@ -5,10 +5,9 @@ package gestion.ihm;
 import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
 import gestion.calendrier.Calendrier;
+
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,13 +17,15 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JTextField;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 
 public class App extends JFrame {
 	private static final long serialVersionUID = -3242724827400274900L;
@@ -40,16 +41,13 @@ public class App extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+
 				try {
 					App frame = new App();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		});
 	}
 
 	/**
@@ -58,15 +56,21 @@ public class App extends JFrame {
 	public App() {
 		
 		setTitle("myCAL");
-		
-		cal = tests();
-				
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		cal = new Calendrier();
+		cal.importIcs("Perso.ics");
+		cal.importIcs("Pro.ics");
+			
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent evt) {
+			     onExit();
+			   }
+			  });
+
 		setBounds(100, 100, 792, 556);
-		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
 		JMenu mnAjouter = new JMenu("Ajouter");
 		menuBar.add(mnAjouter);
 		
@@ -88,14 +92,11 @@ public class App extends JFrame {
 		mntmvnement_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int[] selection = table.getSelectedRows();
-				
 				for(Agenda a: cal.getAgendas()){
 					a.getEvenements().remove(evts.get(selection[0]));
 				}
-				
 				getContentPane().remove(jspane);
 				remplirTableau(cal.tri("agenda"));
-				
 			}
 		});
 		mnSupprimer.add(mntmvnement_1);
@@ -154,6 +155,7 @@ public class App extends JFrame {
 		JMenuItem mntmParNom_1 = new JMenuItem("Par nom");
 		mntmParNom_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
+				supprFiltrage();
 				btnNewButton = new JButton("Filtrer par nom");	        
 				btnNewButton.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
@@ -170,6 +172,7 @@ public class App extends JFrame {
 		JMenuItem mntmParDate = new JMenuItem("Par date");
 		mntmParDate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
+				supprFiltrage();
 				btnNewButton = new JButton("Filtrer par date");	        
 				btnNewButton.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
@@ -187,6 +190,7 @@ public class App extends JFrame {
 		JMenuItem mntmParLieu_1 = new JMenuItem("Par lieu");
 		mntmParLieu_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
+				supprFiltrage();
 				btnNewButton = new JButton("Filtrer par lieu");	        
 				btnNewButton.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
@@ -200,9 +204,6 @@ public class App extends JFrame {
 		});
 		mnFiltrer.add(mntmParLieu_1);
 		
-		JMenuItem mntmParAgenda_1 = new JMenuItem("Par agenda");
-		mnFiltrer.add(mntmParAgenda_1);
-		
 		JMenu mnPartage = new JMenu("Partage");
 		menuBar.add(mnPartage);
 		
@@ -215,27 +216,38 @@ public class App extends JFrame {
 		mnPartage.add(mntmExporter);
 		
 		JMenuItem mntmImporterics = new JMenuItem("Importer .ics");
+		mntmImporterics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				supprFiltrage();
+				btnNewButton = new JButton("Importer");	        
+				btnNewButton.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		getContentPane().remove(jspane);
+		        		cal.importIcs(textField.getText());
+		        		remplirTableau(cal.tri("agenda"));
+		        	}
+		        });
+				affichageFormFiltrage(btnNewButton);
+				textField.setText("chemin/fichier.ics");
+		        SwingUtilities.updateComponentTreeUI(contentPane);
+			}
+		});
+		
 		mnPartage.add(mntmImporterics);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-        
 		panelFiltrage = new JPanel();
         contentPane.add(panelFiltrage, BorderLayout.SOUTH);
-        
-        
-        
-        
-        
-		
-        
-		
-		remplirTableau(cal.tri("agenda"));
-		
-		
+		remplirTableau(cal.tri("agenda"));	
 	}
 	
+	protected void onExit() {
+		cal.exportIcs();	
+		System.exit(0);
+	}
+
 	public void remplirTableau(ArrayList<Evenement> evts){
 		
 		TableauDynamique td = new TableauDynamique(cal, evts);
@@ -244,61 +256,18 @@ public class App extends JFrame {
         this.contentPane.add(jspane);
         SwingUtilities.updateComponentTreeUI(this.getContentPane());
 		}
-	
-	public Calendrier tests(){
-		//calendar
-		cal = new Calendrier();
-		
-		//agendas
-		Agenda ag1 = new Agenda("Perso");
-		Agenda ag2 = new Agenda("Pro");
-		
-		//events
-		Evenement e1 = new Evenement();
-		e1.setNom("RDV Coiffeur");
-		e1.setLieu("Annecy");
-		e1.setDateHeureDebut(new GregorianCalendar(2013,11,8,11,30));
-		e1.setDateHeureFin(new GregorianCalendar(2013,11,8,11,40));
-		
-		Evenement e2 = new Evenement();
-		e2.setNom("RŽunion avec Jacky");
-		e2.setLieu("Annecy-le-Vieux");
-		e2.setDateHeureDebut(new GregorianCalendar(2013,11,12,18,30));
-		e2.setDateHeureFin(new GregorianCalendar(2013,11,12,18,30));
-		
-		Evenement e3 = new Evenement();
-		e3.setNom("RŽparation voiture");
-		e3.setLieu("Seynod");
-		e3.setDateHeureDebut(new GregorianCalendar(2013,11,15,14,00));
-		e3.setDateHeureFin(new GregorianCalendar(2013,11,14,10,00));
-		
-		Evenement e4 = new Evenement();
-		e4.setNom("Courses de noel");
-		e4.setLieu("Lyon");
-		e4.setDateHeureFin(new GregorianCalendar(2013,11,14,10,00));
-		
-		Evenement e5 = new Evenement();
-
-		//links
-		cal.ajouter(ag1);
-		cal.ajouter(ag2);
-		
-		ag1.ajouter(e1);
-		ag1.ajouter(e3);
-		ag1.ajouter(e4);
-		
-		ag2.ajouter(e2);
-		ag2.ajouter(e5);
-		
-		e1.changerAgenda(cal, "Pro");
-		
-		return cal;
-	}
 
 	public void affichageFormFiltrage(JButton btnNewButton) {
 		textField = new JTextField();
 		panelFiltrage.add(textField);
 		textField.setColumns(20);
 		panelFiltrage.add(btnNewButton);
+	}
+
+	public void supprFiltrage() {
+		try{
+		panelFiltrage.remove(btnNewButton);
+		panelFiltrage.remove(textField);
+		}catch(NullPointerException e){};
 	}
 }

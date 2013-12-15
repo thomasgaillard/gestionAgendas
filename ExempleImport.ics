@@ -3,12 +3,13 @@ METHOD:PUBLISH
 VERSION:2.0
 X-WR-CALNAME:ExempleImport
 BEGIN:VEVENT
-DTEND;TZID=Europe/Paris:15/12/2012 14:00
+DTEND;TZID=Europe/Paris:15/12/2013 22:11
 SUMMARY:Reviser maths (Integrales - Aire - Limites - Exponentielle - Matrices)
+LOCATION:IAE
 DTSTART;TZID=Europe/Paris:13/12/2012 11:30
 END:VEVENT
 BEGIN:VEVENT
-DTEND;TZID=Europe/Paris:15/02/2013 07:00
+DTEND;TZID=Europe/Paris:15/12/2013 22:11
 SUMMARY:Travail Conseil General
 LOCATION:Cap Periaz
 DTSTART;TZID=Europe/Paris:14/12/2013 19:45
