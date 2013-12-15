@@ -22,6 +22,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import com.toedter.calendar.JDateChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -169,6 +171,8 @@ public class App extends JFrame {
 		
 		evts = cal.tri("agenda");
 		remplirTableau(evts);
+		
+		
 	}
 	
 	public void remplirTableau(ArrayList<Evenement> evts){
