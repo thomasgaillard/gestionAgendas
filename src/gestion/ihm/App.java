@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 
 public class App extends JFrame {
 	private static final long serialVersionUID = -3242724827400274900L;
@@ -33,6 +34,8 @@ public class App extends JFrame {
 	private Calendrier cal;
 	private ArrayList<Evenement> evts;
 	private JTextField textField;
+	private JPanel panelFiltrage;
+	protected JButton btnNewButton;
 	/**
 	 * Launch the application.
 	 */
@@ -150,16 +153,51 @@ public class App extends JFrame {
 		
 		JMenuItem mntmParNom_1 = new JMenuItem("Par nom");
 		mntmParNom_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {	
+				btnNewButton = new JButton("Filtrer par nom");	        
+				btnNewButton.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		getContentPane().remove(jspane);
+		        		remplirTableau(cal.filtreNom(textField.getText()));
+		        	}
+		        });
+				affichageFormFiltrage(btnNewButton);
+		        SwingUtilities.updateComponentTreeUI(contentPane);
 			}
 		});
 		mnFiltrer.add(mntmParNom_1);
 		
 		JMenuItem mntmParDate = new JMenuItem("Par date");
+		mntmParDate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				btnNewButton = new JButton("Filtrer par date");	        
+				btnNewButton.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		getContentPane().remove(jspane);
+		        		remplirTableau(cal.filtreDate(Calendrier.deformatterDate(textField.getText())));
+		        	}
+		        });
+				affichageFormFiltrage(btnNewButton);
+				textField.setText("JJ/MM/AAAA HH:MM");
+		        SwingUtilities.updateComponentTreeUI(contentPane);
+			}
+		});
 		mnFiltrer.add(mntmParDate);
 		
 		JMenuItem mntmParLieu_1 = new JMenuItem("Par lieu");
+		mntmParLieu_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				btnNewButton = new JButton("Filtrer par lieu");	        
+				btnNewButton.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		getContentPane().remove(jspane);
+		        		remplirTableau(cal.filtreLieu(textField.getText()));
+		        	}
+		        });
+				affichageFormFiltrage(btnNewButton);
+		        SwingUtilities.updateComponentTreeUI(contentPane);
+			}
+		});
 		mnFiltrer.add(mntmParLieu_1);
 		
 		JMenuItem mntmParAgenda_1 = new JMenuItem("Par agenda");
@@ -183,6 +221,16 @@ public class App extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
         
+		panelFiltrage = new JPanel();
+        contentPane.add(panelFiltrage, BorderLayout.SOUTH);
+        
+        
+        
+        
+        
+		
+        
+		
 		remplirTableau(cal.tri("agenda"));
 		
 		
@@ -195,23 +243,6 @@ public class App extends JFrame {
         jspane = new JScrollPane(table);
         this.contentPane.add(jspane);
         SwingUtilities.updateComponentTreeUI(this.getContentPane());
-        
-        JPanel panel = new JPanel();
-        contentPane.add(panel, BorderLayout.SOUTH);
-        
-        textField = new JTextField();
-        panel.add(textField);
-        textField.addKeyListener(new KeyAdapter() {
-        	@Override
-        	public void keyReleased(KeyEvent e) {
-        		getContentPane().remove(jspane);
-        		remplirTableau(cal.filtreNom(textField.getText()));
-        	}
-        });
-        textField.setColumns(10);
-        
-        JButton btnNewButton = new JButton("New button");
-        panel.add(btnNewButton);
 		}
 	
 	public Calendrier tests(){
@@ -262,5 +293,12 @@ public class App extends JFrame {
 		e1.changerAgenda(cal, "Pro");
 		
 		return cal;
+	}
+
+	public void affichageFormFiltrage(JButton btnNewButton) {
+		textField = new JTextField();
+		panelFiltrage.add(textField);
+		textField.setColumns(20);
+		panelFiltrage.add(btnNewButton);
 	}
 }
