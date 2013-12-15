@@ -26,13 +26,13 @@ public class Test {
 		e1.setDateHeureFin(new GregorianCalendar(2013,11,8,11,40));
 		
 		Evenement e2 = new Evenement();
-		e2.setNom("RŽunion avec Jacky");
+		e2.setNom("Reunion avec Jacky");
 		e2.setLieu("Annecy-le-Vieux");
 		e2.setDateHeureDebut(new GregorianCalendar(2013,11,12,18,30));
 		e2.setDateHeureFin(new GregorianCalendar(2013,11,12,18,30));
 		
 		Evenement e3 = new Evenement();
-		e3.setNom("RŽparation voiture");
+		e3.setNom("Reparation voiture");
 		e3.setLieu("Seynod");
 		e3.setDateHeureDebut(new GregorianCalendar(2013,11,15,14,00));
 		e3.setDateHeureFin(new GregorianCalendar(2013,11,14,10,00));
@@ -60,7 +60,7 @@ public class Test {
 		System.out.println(ag2.toString());
 		
 		e2.changerAgenda(cal, "Perso");
-		System.out.println("\n----- Jeu de Tests 2 (DŽplacement dans agenda 1) -----");
+		System.out.println("\n----- Jeu de Tests 2 (Deplacement dans agenda 1) -----");
 		System.out.println(ag1.toString());
 		System.out.println(ag2.toString());
 		
@@ -123,6 +123,6 @@ public class Test {
 		cal.exportIcs();
 		
 		System.out.println("\n----- Jeu de Tests 13 (import ics) -----");
-		cal.importIcs("/fzer/zer.ics");
+		cal.importIcs("ExempleImport.ics");
 	}
 }

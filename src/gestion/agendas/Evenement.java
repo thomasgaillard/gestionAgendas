@@ -18,7 +18,7 @@ public class Evenement {
 	
 	//constructors
 	public Evenement(){
-		this.setNom("Mon événement");
+		this.setNom("Mon evenement");
 		this.setLieu("");
 		this.setDateHeureDebut(new GregorianCalendar(TimeZone.getTimeZone("Europe/Paris")));
 		this.setDateHeureFin(new GregorianCalendar());
@@ -83,9 +83,6 @@ public class Evenement {
 		Agenda ag = new Agenda(nomAgenda);
 		cal.ajouter(ag);
 		ag.ajouter(this);
-		
-		
-		
 		//agenda.ajouter(this);
 	}
 	

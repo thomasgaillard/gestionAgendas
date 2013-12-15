@@ -4,6 +4,8 @@ package gestion.calendrier;
 
 import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -43,7 +45,43 @@ public class Calendrier {
 	}
 	
 	public void importIcs(String fichier){
-		
+		try{
+			BufferedReader in = new BufferedReader(new FileReader(fichier));
+		    String line;
+		    Agenda ag = null;
+		    Evenement ev = null;
+		    while ((line = in.readLine()) != null) {
+		    	//create the agenda
+		    	if(line.startsWith("X-WR-CALNAME:")){
+		    		ag = new Agenda(line.substring(line.indexOf(":")+1));
+		    		this.ajouter(ag);
+		    	}
+		    	//create events
+		    	if(line.startsWith("BEGIN:VEVENT")){
+		    		ev = new Evenement();
+		    	}
+		    	if(line.startsWith("SUMMARY:")){
+		    		ev.setNom(line.substring(line.indexOf(":")+1));
+		    	}
+		    	if(line.startsWith("LOCATION:")){
+		    		ev.setLieu(line.substring(line.indexOf(":")+1));
+		    	}
+		    	if(line.startsWith("DTEND;")){
+		    		ev.setDateHeureFin(ev.deformatterDate(line.substring(line.indexOf(";")+1)));
+		    	}
+		    	if(line.startsWith("DTSTART;")){
+		    		ev.setDateHeureDebut(ev.deformatterDate(line.substring(line.indexOf(";")+1)));
+		    	}
+		    	if(line.startsWith("END:VEVENT")){
+		    		ag.ajouter(ev);
+		    		ev=null;
+		    	}
+			}
+		    in.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	//sort and filter methods
