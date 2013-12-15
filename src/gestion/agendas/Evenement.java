@@ -84,8 +84,6 @@ public class Evenement {
 		ag.ajouter(this);
 	}
 	
-	
-	
 	public String toString(){
 		return(this.getNom()+" de l'agenda "+this.getAgenda().getNom()+" : du "+Calendrier.formatterDate(this.getDateHeureDebut())+" au "+Calendrier.formatterDate(this.getDateHeureFin())+"  ˆ "+this.getLieu()+"\n");
 	}
