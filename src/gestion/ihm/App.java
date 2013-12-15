@@ -173,8 +173,9 @@ public class App extends JFrame {
 	
 	public void remplirTableau(ArrayList<Evenement> evts){
 		
-		TableauDynamique td = new TableauDynamique(evts);
+		TableauDynamique td = new TableauDynamique(cal, evts);
         table =  new JTable(td);
+        
         jspane = new JScrollPane(table);
         this.getContentPane().add(jspane);
         SwingUtilities.updateComponentTreeUI(this.getContentPane());
@@ -224,6 +225,8 @@ public class App extends JFrame {
 		
 		ag2.ajouter(e2);
 		ag2.ajouter(e5);
+		
+		e1.changerAgenda(cal, "Pro");
 		
 		return cal;
 	}

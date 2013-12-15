@@ -2,6 +2,8 @@
 
 package gestion.agendas;
 
+import gestion.calendrier.Calendrier;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
@@ -71,9 +73,21 @@ public class Evenement {
 	}
 	
 	//methods
-	public void changerAgenda(Agenda agenda) {
+	public void changerAgenda(Calendrier cal, String nomAgenda) {
 		this.getAgenda().supprimer(this);
-		agenda.ajouter(this);
+		for(Agenda a:cal.getAgendas()){
+			if(a.getNom().equalsIgnoreCase(nomAgenda)){
+				a.ajouter(this);
+				return;
+			}
+		}
+		Agenda ag = new Agenda(nomAgenda);
+		cal.ajouter(ag);
+		ag.ajouter(this);
+		
+		
+		
+		//agenda.ajouter(this);
 	}
 	
 	public String formatterDate(GregorianCalendar date){

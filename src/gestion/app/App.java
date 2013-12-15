@@ -60,7 +60,7 @@ public class App {
 		System.out.println(ag1.toString());
 		System.out.println(ag2.toString());
 		
-		e2.changerAgenda(ag1);
+		e2.changerAgenda(cal, "Perso");
 		System.out.println("\n----- Jeu de Tests 2 (DŽplacement dans agenda 1) -----");
 		System.out.println(ag1.toString());
 		System.out.println(ag2.toString());
