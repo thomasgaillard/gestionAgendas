@@ -69,14 +69,6 @@ public class App extends JFrame {
 		JMenu mnAjouter = new JMenu("Ajouter");
 		menuBar.add(mnAjouter);
 		
-		JMenuItem mntmAgenda = new JMenuItem("Agenda");
-		mntmAgenda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("J'ajoute un Agenda !!!");
-			}
-		});
-		mnAjouter.add(mntmAgenda);
-		
 		JMenuItem mntmvnement = new JMenuItem("\u00C9v\u00E9nement");
 		mntmvnement.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
