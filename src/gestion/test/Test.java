@@ -1,7 +1,6 @@
 // Maxence Mermoz - Thomas Gaillard - M1 MTI
-//COUCOUUUUUUUUUUUUUUUUUUUJ
 
-package gestion.app;
+package gestion.test;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -9,7 +8,7 @@ import gestion.calendrier.Calendrier;
 import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
 
-public class App {
+public class Test {
 	//main method
 	public static void main (String []args) {
 		//calendar

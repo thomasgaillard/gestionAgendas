@@ -1,34 +1,28 @@
+// Maxence Mermoz - Thomas Gaillard - M1 MTI
+
 package gestion.ihm;
 
 import gestion.agendas.Agenda;
 import gestion.agendas.Evenement;
 import gestion.calendrier.Calendrier;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.TableModel;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-
-import com.toedter.calendar.JDateChooser;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class App extends JFrame {
-
+	private static final long serialVersionUID = -3242724827400274900L;
 	private JPanel contentPane;
 	private JTable table;
 	private JScrollPane jspane;
@@ -240,5 +234,4 @@ public class App extends JFrame {
 		
 		return cal;
 	}
-
 }
