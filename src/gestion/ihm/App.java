@@ -37,9 +37,7 @@ public class App extends JFrame {
 	private JTextField textField;
 	private JPanel panelFiltrage;
 	protected JButton btnNewButton;
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 
 				try {
@@ -50,9 +48,6 @@ public class App extends JFrame {
 				}
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public App() {
 		
 		setTitle("myCAL");
@@ -250,6 +245,7 @@ public class App extends JFrame {
 
 	public void remplirTableau(ArrayList<Evenement> evts){
 		
+		this.evts=evts;
 		TableauDynamique td = new TableauDynamique(cal, evts);
         table =  new JTable(td); 
         jspane = new JScrollPane(table);
