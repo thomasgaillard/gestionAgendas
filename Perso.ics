@@ -9,7 +9,11 @@ LOCATION:Seynod
 DTSTART;TZID=Europe/Paris:20/12/2013 14:00
 END:VEVENT
 BEGIN:VEVENT
+<<<<<<< HEAD
 DTEND;TZID=Europe/Paris:16/12/2013 09:09
+=======
+DTEND;TZID=Europe/Paris:16/12/2013 08:50
+>>>>>>> 07a3debcf80b4b69c344abb6e983dd0f95ab585c
 SUMMARY:Courses de noel
 LOCATION:Lyon
 DTSTART;TZID=Europe/Paris:15/12/2013 22:10
@@ -27,9 +31,15 @@ LOCATION:Le Bowl, Annecy
 DTSTART;TZID=Europe/Paris:19/12/2013 23:00
 END:VEVENT
 BEGIN:VEVENT
+<<<<<<< HEAD
 DTEND;TZID=Europe/Paris:08/01/2014 20:30
 SUMMARY:Reunion au conservatoire
 LOCATION:Annecy-le-Vieux
 DTSTART;TZID=Europe/Paris:08/01/2014 18:30
+=======
+DTEND;TZID=Europe/Paris:16/12/2013 08:51
+SUMMARY:Mon evenement
+DTSTART;TZID=Europe/Paris:16/12/2013 08:51
+>>>>>>> 07a3debcf80b4b69c344abb6e983dd0f95ab585c
 END:VEVENT
 END:VCALENDAR
